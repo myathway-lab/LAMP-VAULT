@@ -33,14 +33,9 @@ resource "vault_aws_secret_backend_role" "iam_admin_dynamic_role" {
     },   
     {
       "Effect": "Allow",
-      "Action": "sts:AssumeRole",
+      "Action": "sts:*",
       "Resource": "*"
-    },      
-    {
-      "Effect": "Allow",
-      "Action": "sts:GetCallerIdentity",
-      "Resource": "*"
-    }      
+    }    
   ]
 }
 EOT
