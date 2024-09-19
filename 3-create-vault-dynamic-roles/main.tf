@@ -30,12 +30,12 @@ resource "vault_aws_secret_backend_role" "iam_admin_dynamic_role" {
       "Effect": "Allow",
       "Action": "ec2:*",
       "Resource": "*"
-    }    
+    },   
     {
       "Effect": "Allow",
       "Action": "sts:AssumeRole",
       "Resource": "*"
-    }      
+    },      
     {
       "Effect": "Allow",
       "Action": "sts:GetCallerIdentity",
