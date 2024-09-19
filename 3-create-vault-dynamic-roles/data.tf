@@ -2,9 +2,9 @@ data "terraform_remote_state" "vault_admin" {
   backend = "remote"
 
   config = {
-    organization = "HCP-MyaThway"
+    organization = "Vault-AWS-LAMP"
     workspaces = {
-      name = "AWS-IAM-Creation"
+      name = "2-Create-VaultAdmin-in-AWS"
     }
   }
 }
