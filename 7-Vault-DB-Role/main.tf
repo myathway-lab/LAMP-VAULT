@@ -7,7 +7,7 @@ resource "vault_mount" "db" {
 resource "vault_database_secret_backend_connection" "lamp-mysql-db" {
   backend           = vault_mount.db.path
   name              = "lamp-mysql-db"
-  allowed_roles     = vault_database_secret_backend_role.db-role
+  allowed_roles     = "db-role"
   verify_connection = true
   mysql{
     connection_url  = "${var.lamp_username}:${var.lamp_password}@tcp(${var.db_ip}:3306)/"
