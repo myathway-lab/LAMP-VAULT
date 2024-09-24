@@ -10,7 +10,7 @@ resource "vault_database_secret_backend_connection" "lamp-mysql-db" {
   allowed_roles     = ["db-role"]
   verify_connection = true
   mysql{
-    connection_url  = "${var.lamp_username}:${var.lamp_password}@tcp(${var.db_ip}:3306)/"
+    connection_url  = "{{username}}:{{password}}@tcp(${var.db_ip}:3306)/"
     username          = var.lamp_username
     password          = var.lamp_password
   }
