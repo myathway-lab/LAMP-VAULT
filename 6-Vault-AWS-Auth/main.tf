@@ -1,7 +1,6 @@
 ##vault auth enable aws
 resource "vault_auth_backend" "aws" {
   type = "aws"
-  path = "awspath"
 }
 
 ###vault write auth/aws/config/client
