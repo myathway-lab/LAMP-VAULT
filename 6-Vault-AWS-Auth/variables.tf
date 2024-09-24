@@ -10,7 +10,7 @@ variable "vault_dynamic_role" {
   default     = "master-iamadmin-role"
 }
 
-variable "bound_account_id" {
+variable "bound_account_ids" {
   description = "The AWS account ID"
   type        = string
 }
