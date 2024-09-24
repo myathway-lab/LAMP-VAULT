@@ -17,5 +17,5 @@ variable "vault_dynamic_role" {
 
 variable "bound_iam_principal_arns" {
   description = "ec2 attached iam role"
-  type        = string
+  type        = list(string)
 }
