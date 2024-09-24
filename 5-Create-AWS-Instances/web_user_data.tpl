@@ -21,7 +21,7 @@ auto_auth {
       mount_path = "auth/aws"
       config = {
           type = "iam"
-          role = "vault-role-for-aws-ec2role"
+          role = "vault-role-for-ec2role"
       }
   }
 
