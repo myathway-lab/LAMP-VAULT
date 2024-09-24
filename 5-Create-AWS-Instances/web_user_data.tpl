@@ -39,7 +39,7 @@ template {
   source      = "/etc/vault.d/db-creds-template.hcl"
   destination = "/var/www/html/db-creds.json"  
 }
-EOL
+EOF
 
 sudo chown vault:vault /etc/vault.d/vault-agent.hcl
 sudo chmod 600 /etc/vault.d/vault-agent.hcl
@@ -51,7 +51,7 @@ sudo cat <<EOF > /etc/vault.d/db-creds-template.hcl
   "username": "{{ with secret "database/creds/db-role" }}{{ .Data.username }}{{ end }}",
   "password": "{{ with secret "database/creds/db-role" }}{{ .Data.password }}{{ end }}"
 }
-EOL
+EOF
 
 sudo chown vault:vault /etc/vault.d/db-creds-template.hcl
 sudo chmod 600 /etc/vault.d/vault-agent.hcl
@@ -73,7 +73,7 @@ Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
-EOL
+EOF
 
 
 sudo systemctl daemon-reload
@@ -123,8 +123,7 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully to the database.";
 ?>
-EOL
-              
-#sudo systemctl restart vault-agent.service 
-#sudo systemctl restart apache2
 EOF
+              
+sudo systemctl restart vault-agent.service 
+sudo systemctl restart apache2
