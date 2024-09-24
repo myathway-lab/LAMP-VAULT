@@ -1,3 +1,10 @@
+locals {
+  len_public_subnets   = length(var.public_subnets)
+  len_private_subnets  = length(var.private_subnets)
+  len_database_subnets = length(var.database_subnets)
+}
+
+
 data "aws_availability_zones" "azs" {
   state = "available"
 }
@@ -23,10 +30,10 @@ resource "aws_vpc" "main" {
 ################################################################################
 
 resource "aws_subnet" "public" {
-#  count                   = local.len_public_subnets
+  count                   = local.len_public_subnets
   vpc_id                  = aws_vpc.main.id
   availability_zone       = data.aws_availability_zones.azs.names[0]
-  cidr_block              = var.public_subnets
+  cidr_block              = var.public_subnets[count.index]
   map_public_ip_on_launch = var.map_public_ip_on_launch
   tags = {
     Name = "Pub-Subnet-Web"
@@ -61,10 +68,10 @@ resource "aws_route" "public_internet_gateway" {
 ################################################################################
 
 resource "aws_subnet" "private" {
-#  count             = local.len_private_subnets
+  count             = local.len_private_subnets
   vpc_id            = aws_vpc.main.id
   availability_zone = data.aws_availability_zones.azs.names[1]
-  cidr_block        = var.private_subnets
+  cidr_block        = var.private_subnets[count.index]
   tags = {
     Name = "Pri-Subnet-DB"
   }  
@@ -111,9 +118,6 @@ resource "aws_internet_gateway" "this" {
 
 resource "aws_eip" "nat" {
   domain = "vpc"
-  tags = {
-    Name = var.tags
-  }
   depends_on = [aws_internet_gateway.this]
 }
 
