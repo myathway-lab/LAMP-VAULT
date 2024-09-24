@@ -1,6 +1,6 @@
 resource "vault_mount" "db" {
   path = "database"
-  type = "mysql"
+  type = "database"
   description = "This is for mysql db secret engine."
 }
 
