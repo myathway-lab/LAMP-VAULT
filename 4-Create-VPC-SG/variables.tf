@@ -41,7 +41,7 @@ variable "enable_dns_support" {
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
-  default     = {
+  default = {
     "Environment" = "Production"
     "Project"     = "TFC-VAULT-AWS-Project"
     "Owner"       = "MyaThway"
@@ -122,15 +122,15 @@ variable "nat_gateway_destination_cidr_block" {
 ##############################################
 
 variable "backend_path" {
-    description = "Vault aws secret path"
-    type = string
-    default = "aws-master-account"
+  description = "Vault aws secret path"
+  type        = string
+  default     = "aws-master-account"
 }
 
 variable "vault_dynamic_role" {
-    description = "Vault dynamic role"
-    type = string
-    default = "master-iamadmin-role"
+  description = "Vault dynamic role"
+  type        = string
+  default     = "master-iamadmin-role"
 }
 
 variable "aws_region" {
