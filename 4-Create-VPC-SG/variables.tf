@@ -121,19 +121,6 @@ variable "nat_gateway_destination_cidr_block" {
 #Vault
 ##############################################
 
-variable "aws_secret_backend_path" {
-  description = "aws_secret_backend_path"
-  type        = string
-  default = "aws-master-account"
-}
-
-variable "aws_netadmin_role_name" {
-  description = "aws_secret_backend_path"
-  type        = string
-  default = "master-networkadmin-role"
-}
-
-
 variable "backend_path" {
     description = "Vault aws secret path"
     type = string
