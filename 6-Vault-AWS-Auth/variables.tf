@@ -12,7 +12,7 @@ variable "vault_dynamic_role" {
 
 variable "bound_account_ids" {
   description = "The AWS account ID"
-  type        = string
+  type        = list(string)
 }
 
 variable "bound_iam_instance_profile_arns" {
