@@ -60,4 +60,14 @@ variable "db_ip" {
 }
 
 
+variable "backend_path" {
+  description = "Vault aws secret path"
+  type        = string
+  default     = "aws-master-account"
+}
 
+variable "vault_dynamic_role" {
+  description = "Vault dynamic role"
+  type        = string
+  default     = "master-iamadmin-role"
+}
