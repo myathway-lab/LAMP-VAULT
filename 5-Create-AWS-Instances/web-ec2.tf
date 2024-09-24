@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "5.68.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "ap-southeast-1"
-}
-
 
 resource "aws_instance" "LAMP-WEB" {
   ami                         = "ami-01811d4912b4ccb26"

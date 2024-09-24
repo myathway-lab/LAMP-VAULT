@@ -3,6 +3,11 @@ variable "key_name" {
   type        = string
 }
 
+variable "aws_region" {
+  description = "AWS Region for Vault AWS Secret Role"
+  default     = "ap-southeast-1"
+}
+
 variable "vpc_id" {
   description = "VPC ID"
   type        = string
