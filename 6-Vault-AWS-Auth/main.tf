@@ -26,7 +26,9 @@ resource "vault_aws_auth_backend_role" "vault-role-for-ec2role" {
   backend                         = vault_auth_backend.aws.path
   role                            = "vault-role-for-ec2role"
   auth_type                       = "iam"
-  bound_iam_principal_arns        = var.bound_iam_principal_arns[count.index]
+  for_each                        = toset(var.bound_iam_principal_arns)
+  #bound_iam_principal_arns        = var.bound_iam_principal_arns[count.index]
+  bound_iam_principal_arns        = each.value
   token_ttl                       = 120
   token_max_ttl                   = 300
   token_policies                  = ["vault-policy-for-ec2role"]
