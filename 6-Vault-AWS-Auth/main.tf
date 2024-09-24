@@ -1,4 +1,4 @@
-###vault auth enable aws
+##vault auth enable aws
 resource "vault_auth_backend" "aws" {
   type = "aws"
   path = "awspath"
