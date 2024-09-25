@@ -5,7 +5,7 @@ output "web_instance_id" {
 
 output "web_instance_public_ip" {
   description = "Public IP address of the Web EC2 instance"
-  value       = aws_instance.LAMP-WEB.public_ip
+  value       = aws_instance.LAMP-WEB.public_dns
 }
 
 output "db_instance_id" {
