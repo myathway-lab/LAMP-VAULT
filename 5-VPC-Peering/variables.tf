@@ -1,3 +1,8 @@
+variable "aws_region" {
+  description = "AWS Region for Vault AWS Secret Role"
+  default     = "ap-southeast-1"
+}
+
 variable "hvn_id" {
   description = "HVN ID"
   type        = string
