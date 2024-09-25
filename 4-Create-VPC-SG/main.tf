@@ -166,7 +166,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_https" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh_to_all" {
   security_group_id = aws_security_group.Web-SecurityGroup.id
-  cidr_ipv6         = "0.0.0.0/0"
+  cidr_ipv4         = "0.0.0.0/0"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
@@ -213,7 +213,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_vault" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_websever" {
   security_group_id = aws_security_group.DB-SecurityGroup.id
-  cidr_ipv6         = var.public_subnets[0] 
+  cidr_ipv4         = var.public_subnets[0] 
   from_port         = 3306
   ip_protocol       = "tcp"
   to_port           = 3306
