@@ -82,8 +82,8 @@ sudo systemctl enable vault-agent
 sudo systemctl start vault-agent
 
 
-#Configure PHP code for dynamic DB cred 
-sudo cat <<'EOF' > /var/www/html/phptest.php
+#Configure PHP code for dynamic DB cred check
+sudo cat <<'EOF' > /var/www/html/phptest1.php
 <?php
 // Enable error reporting
 error_reporting(E_ALL);
@@ -125,6 +125,99 @@ if ($conn->connect_error) {
 echo "Connected successfully to the database.";
 ?>
 EOF
-              
+
+
+
+#Configure PHP code for dynamic cred to verify the access
+sudo cat <<'EOF' > /var/www/html/usersubmission.php
+<?php
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Path to the JSON file with database credentials
+$credsFile = '/var/www/html/db-creds.json';
+
+// Read the JSON file
+$json = file_get_contents($credsFile);
+if ($json === false) {
+    die("Failed to read credentials file.");
+}
+
+$creds = json_decode($json, true);
+if ($creds === null) {
+    die("Failed to decode JSON.");
+}
+
+// Database connection parameters
+$servername = "10.0.2.217"; // e.g., "localhost" or your server IP
+$username = $creds['username'];
+$password = $creds['password'];
+$dbname = "lamp"; // the name of your database
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully to the database.<br>";
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user = $_POST['username'];
+    $email = $_POST['email'];
+    $pass = $_POST['password'];
+
+    // Insert data into the users table
+    $sql = "INSERT INTO users (username, email, password) VALUES ('$user', '$email', '$pass')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New user created successfully. Below is the LAMP User List. <br>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Retrieve and display all users
+$sql = "SELECT id, username, email FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<h3>Users List</h3>";
+    echo "<table border='1'><tr><th>ID</th><th>Username</th><th>Email</th></tr>";
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>" . $row["id"]. "</td><td>" . $row["username"]. "</td><td>" . $row["email"]. "</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register User</title>
+</head>
+<body>
+    <h3>Register User</h3>
+    <form method="post" action="">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" name="submit" value="Register">
+    </form>
+</body>
+</html>
+EOF 
+
+
 sudo systemctl restart vault-agent.service 
 sudo systemctl restart apache2
