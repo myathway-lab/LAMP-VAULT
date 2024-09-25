@@ -13,7 +13,7 @@ variable "peering_id" {
 variable "peer_vpc_id" {
   description = "AWS VPC ID"
   type        = string
-  default     = "vpc-0f7a1cc45b21861c3"
+  default     = "vpc-0b00da58569e26288"
 }
 
 variable "owner_id" {
@@ -30,15 +30,15 @@ variable "peer_region" {
 
 
 variable "private_routetb_id" {
-  description = "DB-NAT-RouteTable"
+  description = "DB-RouteTable"
   type        = string
-  default     = "rtb-0e40b1f79c8cb927b"
+  default     = "rtb-04e5d2876ac99a4da"
 }
 
 variable "public_routetb_id" {
-  description = "RouteTable-Web"
+  description = "Web-RouteTable"
   type        = string
-  default     = "rtb-0cdd5a56ef06bb166"
+  default     = "rtb-06ddcc39b0c2ec146"
 }
 
 variable "backend_path" {
@@ -46,6 +46,8 @@ variable "backend_path" {
   type        = string
   default     = "aws-master-account"
 }
+
+
 
 variable "vault_dynamic_role" {
   description = "Vault dynamic role"
