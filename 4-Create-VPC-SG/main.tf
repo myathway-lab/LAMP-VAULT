@@ -131,3 +131,114 @@ resource "aws_nat_gateway" "nat" {
   }
 }
 
+
+
+################################################################################
+# Security Group for Web Servers
+################################################################################
+
+
+resource "aws_security_group" "Web-SecurityGroup" {
+  name        = "Web-SecurityGroup"
+  description = "Allow inbound and outbound traffic for Web servers"
+  vpc_id      = aws_vpc.main.id
+
+  tags = {
+    Name = "Web-SecurityGroup"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_http" {
+  security_group_id = aws_security_group.Web-SecurityGroup.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 80
+  ip_protocol       = "tcp"
+  to_port           = 80
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_https" {
+  security_group_id = aws_security_group.Web-SecurityGroup.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 443
+  ip_protocol       = "tcp"
+  to_port           = 443
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh_to_all" {
+  security_group_id = aws_security_group.Web-SecurityGroup.id
+  cidr_ipv6         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all" {
+  security_group_id = aws_security_group.Web-SecurityGroup.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1" # semantically equivalent to all ports
+}
+
+
+
+################################################################################
+# Security Group for DB Servers
+################################################################################
+
+resource "aws_security_group" "DB-SecurityGroup" {
+  name        = "Web-SecurityGroup"
+  description = "Allow inbound and outbound traffic for Db servers"
+  vpc_id      = aws_vpc.main.id
+
+  tags = {
+    Name = "DB-SecurityGroup"
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
+  for_each          = toset(var.public_subnets)
+  security_group_id = aws_security_group.DB-SecurityGroup.id
+  cidr_ipv4         = each.value
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_vault" {
+  security_group_id = aws_security_group.DB-SecurityGroup.id
+  cidr_ipv4         = "172.25.16.0/20"
+  from_port         = 3306
+  ip_protocol       = "tcp"
+  to_port           = 3306
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_websever" {
+  security_group_id = aws_security_group.DB-SecurityGroup.id
+  cidr_ipv6         = var.public_subnets[0] 
+  from_port         = 3306
+  ip_protocol       = "tcp"
+  to_port           = 3306
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_http" {
+  security_group_id = aws_security_group.DB-SecurityGroup.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 80
+  ip_protocol       = "tcp"
+  to_port           = 80
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_https" {
+  security_group_id = aws_security_group.DB-SecurityGroup.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 443
+  ip_protocol       = "tcp"
+  to_port           = 443
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_vaultport" {
+  security_group_id = aws_security_group.DB-SecurityGroup.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 8200
+  ip_protocol       = "tcp"
+  to_port           = 8200
+}

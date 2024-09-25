@@ -76,11 +76,6 @@ variable "public_subnet_names" {
   default     = ["Pub-Subnet-WebServers"]
 }
 
-#variable "public_subnet_suffix" {
-#  description = "Suffix to append to public subnets name"
-#  type        = string
-#  default     = "public"
-#}
 
 
 
@@ -99,12 +94,6 @@ variable "private_subnet_names" {
   type        = list(string)
   default     = ["Pri-Subnet-WebServers"]
 }
-
-#variable "private_subnet_suffix" {
-#  description = "Suffix to append to private subnets name"
-#  type        = string
-#  default     = "private"
-#}
 
 
 ################################################################################
