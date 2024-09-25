@@ -185,7 +185,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all" {
 ################################################################################
 
 resource "aws_security_group" "DB-SecurityGroup" {
-  name        = "Web-SecurityGroup"
+  name        = "DB-SecurityGroup"
   description = "Allow inbound and outbound traffic for Db servers"
   vpc_id      = aws_vpc.main.id
 
