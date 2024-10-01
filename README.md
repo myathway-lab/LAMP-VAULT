@@ -96,7 +96,7 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
               "iam:RemoveUserFromGroup"
             ]
             resources = [
-              "arn:aws:iam::010526263030:user/vault-*"
+              "arn:aws:iam::0105xxxxxx30:user/vault-*"
             ]
           }
         }
@@ -170,7 +170,8 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
 </details>
 
 
-## **4. Create AWS Network Resources**
+<details>
+<summary> <h2>4. Create AWS Network Resources </h2> </summary>
 
 - The `data "vault_aws_access_credentials" "master_iamadmin_creds"` block fetches temporary AWS cred from Vault dynamic role which we created in [**3. Create Vault Roles for AWS Dynamic Credentials**](https://www.notion.so/3-Create-Vault-Roles-for-AWS-Dynamic-Credentials-75d83997ccfc4e86b005c83a00368825?pvs=21).
 - Terraform will use this dynamic cred to authenticate with AWS.
@@ -448,7 +449,10 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
 
 ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/974fda8e-4df4-4e60-a937-f91cc8649e04/image.png)
 
-## **5. VPC Peering between HVN & AWS**
+</details>
+
+<details>
+<summary> <h2> 5. VPC Peering between HVN & AWS </h2> </summary>
 
 - **Same as step 4, Terraform will use aws dynamic cred to authenticate with AWS.**
 - **Establishes a peering connection between an HVN and an AWS VPC.**
@@ -507,7 +511,11 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
 
 ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/222e750e-8cb2-4063-a570-0976286ac361/image.png)
 
-## **6. Create EC2 Instances**
+</details>
+
+
+<details>
+<summary> <h2> 6. Create EC2 Instances </h2> </summary>
 
 - **Same as previous steps, Terraform will use dynamic creds generated from vault role to authenticate with AWS to deploy EC2 resources.**
 - **Full Terraform codes - [](https://github.com/myathway-lab/LAMP-VAULT/blob/main/4-Create-VPC-SG) *https://github.com/myathway-lab/LAMP-VAULT/blob/main/6-Create-EC2-Instances***
@@ -839,7 +847,7 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
     sudo systemctl restart vault-agent.service 
     sudo systemctl restart apache2
     ```
-    
+ 
 
 ### Setup MySQL server
 
@@ -932,9 +940,10 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
     # Restart the mysql after config change.
     sudo systemctl restart mysql
     ```
-    
+</details>    
 
-## 7. Create Vault DB Role
+<details>
+<summary> <h2> Create Vault DB Role </h2> </summary>
 
 - We need to make sure EC2 Webserver able to talk with vault to read the DB creds.
 - In Vault server, we will enable database secret engine, configure database connection and create role for dynamic creds.
@@ -980,8 +989,11 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
     }
     ```
     
+</details>
 
-## 8. Enable Vault AWS Auth
+
+<details>
+<summary> <h2> Enable Vault AWS Auth </h2> </summary>
 
 - For AWS EC2 instances to authenticate with Vault, we can use **AWS auth method**. This method supports two types of authentications, “**IAM Method**” & “**EC2 Method**”.
 - In this scenario, we will use AWS auth **IAM method** using **Vault Agent**.
@@ -1026,13 +1038,13 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
       backend                         = vault_auth_backend.aws.path
       role                            = "vault-role-for-ec2role"
       auth_type                       = "iam"
-      bound_iam_principal_arns        = ["arn:aws:iam::010526263030:role/aws-ec2role-for-vault-authmethod"]
+      bound_iam_principal_arns        = ["arn:aws:iam::01052xxxxxxx030:role/aws-ec2role-for-vault-authmethod"]
       token_ttl                       = 120
       token_max_ttl                   = 300
       token_policies                  = ["vault-policy-for-ec2role"]
     }
     ```
-    
+</details>   
 
 https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu
 
