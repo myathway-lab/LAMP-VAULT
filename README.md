@@ -447,7 +447,8 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
         ```
         
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/974fda8e-4df4-4e60-a937-f91cc8649e04/image.png)
+![image](https://github.com/user-attachments/assets/472613b1-286a-493b-934a-59621475fa60)
+
 
 </details>
 
@@ -509,7 +510,8 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
     ```
     
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/222e750e-8cb2-4063-a570-0976286ac361/image.png)
+![image](https://github.com/user-attachments/assets/1bf0a3bd-1c91-4151-b383-b9a420f38316)
+
 
 </details>
 
@@ -569,17 +571,17 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
 > 
 - **High-level workflow**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/0da3e385-1c76-4d1b-8aaf-dd0939b2e7f8/image.png)
+![image](https://github.com/user-attachments/assets/57516a2b-9f29-4504-9e32-cfa21313048b)
 
 - **Detailed workflow**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/f67abb49-7c57-4a3e-aaea-2a8aef3e1858/image.png)
+![image](https://github.com/user-attachments/assets/83cd958b-b7dd-480d-bdd7-55950c5e7f88)
 
 - **Expected Result: “Automatically renew the dynamic creds before expiring & Ensures web server always has valid credentials”.**
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/a8de90b1-cd6b-4b37-a0d4-008a15ae9af7/image.png)
+![image](https://github.com/user-attachments/assets/7c2a81bb-78cd-402a-80c2-c4a39151ee72)
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/f020007f-666a-401f-b7a3-4c1d3d9787c0/14d87c9c-f5c0-436a-b3f7-7ca7c7043263/image.png)
+![image](https://github.com/user-attachments/assets/499a1748-8697-42bf-9cc3-546d47b2d038)
 
 ### Setup Apache/PHP server
 
