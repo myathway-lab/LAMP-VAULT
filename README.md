@@ -21,7 +21,8 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
 
 # Detailed Steps
 
-## 1. Create HCP Vault Cluster
+<details>
+<summary>## 1. Create HCP Vault Cluster</summary>
 
 - Configure Vault cluster & HVN in HCP using Terraform.
 - Terraform codes **- [*LAMP-VAULT/1-Create-HVN-Cluster at main · myathway-lab/LAMP-VAULT (github.com)*](https://github.com/myathway-lab/LAMP-VAULT/tree/main/1-Create-HVN-Cluster)**
@@ -40,7 +41,7 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
       public_endpoint = true
     }
     ```
-    
+    <details>
 
 ## **2. Create AWS IAM User**
 
