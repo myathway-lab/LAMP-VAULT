@@ -1047,7 +1047,3 @@ https://github.com/user-attachments/assets/e94e62d6-d0a2-4d5c-af4d-367051bbc9f7
     }
     ```
 </details>   
-
-https://www.digitalocean.com/community/tutorials/how-to-install-lamp-stack-on-ubuntu
-
-https://usefulangle.com/post/324/aws-ec2-install-linux-apache-mysql-php-phpmyadmin-lamp-stack-ubuntu-20-04
