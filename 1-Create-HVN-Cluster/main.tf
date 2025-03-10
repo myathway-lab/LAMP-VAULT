@@ -9,4 +9,5 @@ resource "hcp_vault_cluster" "hcp_vault_cluster" {
   cluster_id      = var.cluster_id
   tier            = var.tier
   public_endpoint = true
+
 }
