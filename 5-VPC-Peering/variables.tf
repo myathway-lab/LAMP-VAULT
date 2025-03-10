@@ -37,13 +37,13 @@ variable "peer_region" {
 variable "private_routetb_id" {
   description = "DB-RouteTable"
   type        = string
-  default     = "rtb-04e5d2876ac99a4da"
+  default     = "rtb-0116d9a93f3983050"
 }
 
 variable "public_routetb_id" {
   description = "Web-RouteTable"
   type        = string
-  default     = "rtb-06ddcc39b0c2ec146"
+  default     = "rtb-0c1bd2bd4e133bff1"
 }
 
 variable "backend_path" {
