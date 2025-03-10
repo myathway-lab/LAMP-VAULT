@@ -18,7 +18,7 @@ variable "peering_id" {
 variable "peer_vpc_id" {
   description = "AWS VPC ID"
   type        = string
-  default     = "vpc-0b00da58569e26288"
+  default     = "vpc-00dcd0edfd3bb995d"
 }
 
 variable "owner_id" {
